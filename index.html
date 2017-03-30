@@ -6,36 +6,61 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
 
-    <script src="js/lodash/lodash.js" defer></script>
 
-    <!--
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js" defer></script>
-    -->
+
 
     <script src="js/search.js" defer></script>
+    <script src="js/phoneViewer.js" defer></script>
     <script src="js/phoneCatalogue.js" defer></script>
     <script src="js/page.js" defer></script>
     <script src="js/app.js" defer></script>
     <script src="js/lodash/lodash.min.js"></script>
 </head>
 <body>
-    <div data-component="page">
-        <div class="side-panel">
-            <div data-component="search"></div>
-            <div data-component="phoneCatalogue"></div>
+<div class="view-container" data-component="page">
+    <div class="view-frame">
+        <div class="container-fluid">
+            <div class="row">
+
+                <!--Sidebar content-->
+                <div class="col-md-2">
+                    <div data-component="filter">
+                        Search: <input data-selector="field" type="text">
+                    </div>
+
+                    <div data-component="sorter"></div>
+                </div>
+
+                <!--Body content-->
+                <div class="col-md-10">
+
+                    <div data-component="phoneCatalogue"></div>
+
+                    <div class="js-hidden" data-component="phoneViewer"></div>
+
+                </div>
+
+            </div>
         </div>
-        <div class="main-content"></div>
+
     </div>
+</div>
 
 <script type="text/whatever" id="phone-catalogue-template">
-    <span>
+    <p>Phone catalogue</p>
 
-     </span>
-    <ul>
+    <ul class="phones">
         <% phones.forEach(function(phone){ %>
-        <li class="menu-item" data-selector="menu-item" data-id="<%- phone.id %>">
-        <a href="#<%- phone.id %>"><%- phone.name %></a>
-        </li>
+        <li class="thumbnail phone-listing" data-selector="phoneItemContainer" data-phone-id="<%-phone.id%>">
+       <a href="#/phones/<%-phone.id%>" data-selector="openTrigger" class="thumb">
+         <img src="<%= phone.imageUrl %>" alt="<%-phone.name%>" data-selector="openTrigger">
+        </a>
+      <a href="#/phones/<%-phone.id%>" data-selector="openTrigger"><%= phone.name %></a>
+        <p><%= phone.snippet %></p>
+      </li>
         <% }); %>
        </ul>
 </script>

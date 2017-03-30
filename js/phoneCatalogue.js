@@ -4,28 +4,30 @@ class PhoneCatalogue {
     constructor(options) {
         this._el = options.element;
         this._phones = options.phones;
-
+        this.onPhoneSelectedCallback = options.onPhoneSelected;
         this._template = document.getElementById('phone-catalogue-template').innerHTML;
 
-        this._el.addEventListener('click', this._onPhoneClick);
+        this._el.addEventListener('click', this._onPhoneClick.bind(this));
 
         this._render();
     }
 
     _onPhoneClick (e) {
-        var currentItem = e.target.closest('[data-selector = "menu-item"]');
+        var link= e.target.closest('[data-selector = "openTrigger"]');
 
-        if(!currentItem) {
+        if(!link) {
             return;
         }
-        alert(currentItem.dataset.id);
+        let phoneId = e.target.closest('[data-selector = "phoneItemContainer"]').dataset.phoneId;
+        alert(phoneId);
+        this.onPhoneSelectedCallback(phoneId);
     }
     _render()
     {
         this._el.innerHTML = _.template(this._template)({
             title: 'Phones to sell',
             phones: this._phones
-        })
+        });
     }
 }
 
