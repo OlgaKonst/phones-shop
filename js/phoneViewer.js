@@ -18,10 +18,7 @@ class PhoneViewer extends Component {
     _onBackClick(e) {
         let backButton = e.target.closest('[data-selector="backButton"]');
         if(!backButton) { return; }
-        this._triggerBack();
+        this.trigger('back');
     }
-    _triggerBack() {
-        let event = new CustomEvent('back');
-        this._el.dispatchEvent(event);
-    }
+
 }

@@ -14,5 +14,16 @@ class Component {
     getElement() {
         return this._el;
     }
-    _con(){console.log('component', this._el);}
+    on(eventName, handler) {
+        this._el.addEventListener(eventName, handler);
+    }
+    trigger(eventName, data, options) {
+        options = options || {};
+        if(data != undefined) {
+            options.detail = data;
+        }
+        alert(9);
+        let event = new CustomEvent('phoneSelected', options);
+        this._el.dispatchEvent(event);
+    }
 }

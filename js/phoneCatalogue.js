@@ -7,7 +7,7 @@ class PhoneCatalogue extends Component {
        // this.onPhoneSelectedCallback = options.onPhoneSelected;
         this._template = document.getElementById('phone-catalogue-template').innerHTML;
 
-        this._el.addEventListener('click', this._onPhoneClick.bind(this));
+        this.on('click', this._onPhoneClick.bind(this));
 
         this._render();
     }
@@ -18,15 +18,12 @@ class PhoneCatalogue extends Component {
             return;
         }
         let phoneId = e.target.closest('[data-selector = "phoneItemContainer"]').dataset.phoneId;
-        this._triggerPhoneSelected(phoneId);
+        this.trigger('phoneSelected', phoneId);
+        //this._triggerPhoneSelected(phoneId);
         //this.onPhoneSelectedCallback(phoneId);
     }
-    _triggerPhoneSelected(phoneId) {
-        let event = new CustomEvent('phoneSelected',{
-            detail: phoneId
-        });
-        this._el.dispatchEvent(event);
-    }
+
+
     _render()
     {
         this._el.innerHTML = _.template(this._template)({
