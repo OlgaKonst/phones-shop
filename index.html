@@ -11,7 +11,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js" defer></script>
 
-
+    <script src="js/component.js" defer></script>
     <script src="js/search.js" defer></script>
     <script src="js/phoneViewer.js" defer></script>
     <script src="js/phoneCatalogue.js" defer></script>
@@ -63,6 +63,14 @@
       </li>
         <% }); %>
        </ul>
+</script>
+<script type="text/whatever" id="phone-viewer-template">
+    <button type="button" data-selector="backButton">Back</button>
+    <div class="phone-image">
+    <img src="<%= phone.imageUrl %>" alt="" class="phone active">
+    </div>
+    <h1><%= phone.name %></h1>
+    <h2><%= phone.snippet %></h2>
 </script>
 </body>
 </html>

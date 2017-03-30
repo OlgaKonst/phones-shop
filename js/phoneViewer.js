@@ -1,10 +1,27 @@
-"use strict"
+"use strict";
 
-class PhoneViewer {
+class PhoneViewer extends Component {
     constructor(options) {
-        this._elem = options.elem;
+        super(options);
+
+        this._template = document.getElementById("phone-viewer-template").innerHTML;
+
+        this._el.addEventListener('click', this._onBackClick.bind(this));
     }
-    show() {
-        alert('show');
+    show(phoneDetailes) {
+
+        this._el.innerHTML = _.template(this._template)({
+            phone: phoneDetailes
+        });
+        super.show();
+    }
+    _onBackClick(e) {
+        let backButton = e.target.closest('[data-selector="backButton"]');
+        if(!backButton) { return; }
+        this._triggerBack();
+    }
+    _triggerBack() {
+        let event = new CustomEvent('back');
+        this._el.dispatchEvent(event);
     }
 }
