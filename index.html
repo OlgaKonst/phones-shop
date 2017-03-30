@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phones</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+
+    <script src="js/lodash/lodash.js" defer></script>
+
+    <!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js" defer></script>
+    -->
+
+    <script src="js/search.js" defer></script>
+    <script src="js/phoneCatalogue.js" defer></script>
+    <script src="js/page.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/lodash/lodash.min.js"></script>
+</head>
+<body>
+    <div data-component="page">
+        <div class="side-panel">
+            <div data-component="search"></div>
+            <div data-component="phoneCatalogue"></div>
+        </div>
+        <div class="main-content"></div>
+    </div>
+
+<script type="text/whatever" id="phone-catalogue-template">
+    <span>
+
+     </span>
+    <ul>
+        <% phones.forEach(function(phone){ %>
+        <li class="menu-item" data-selector="menu-item" data-id="<%- phone.id %>">
+        <a href="#<%- phone.id %>"><%- phone.name %></a>
+        </li>
+        <% }); %>
+       </ul>
+</script>
+</body>
+</html>
